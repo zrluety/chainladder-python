@@ -122,7 +122,7 @@ class CurrentDevelopment(DevelopmentBase):
                     n_dev = int(n_developments_[..., col])
                     # Sum the prior n_dev periods, but don't go before column 0
                     start_col = max(0, col - n_dev + 1)
-                    x_slice[:, col] = xp.sum(inner_array[:, start_col : col + 1], axis=1)
+                    x_slice[:, col] = xp.nansum(inner_array[:, start_col : col + 1], axis=1)
                 
                 x[i, j] = x_slice
                 link_ratio[i, j, :, :] = y[i, j] / x[i, j]

@@ -26,3 +26,9 @@ def test_currend_development_pattern_2_periods():
     expected_ldf2 = 0.8523101632
     np.testing.assert_almost_equal(dev.ldf_.values[0, 0, 0, 0], expected_ldf)
     np.testing.assert_almost_equal(dev.ldf_.values[0, 0, 0, 1], expected_ldf2)
+
+def test_current_development_with_null_values():
+    triangle = cl.load_sample('lp_oem_credit_loss')
+    development = cl.CurrentDevelopment(n_developments=2, n_periods=-1).fit(triangle)
+    expected_ldf = 5.9954679451855855
+    np.testing.assert_almost_equal(development.ldf_.values[0, 0, 0, 1], expected_ldf)

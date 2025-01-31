@@ -1,6 +1,8 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import warnings
+
 import numpy as np
 import pandas as pd
 from chainladder.utils import WeightedRegression
@@ -125,7 +127,9 @@ class CurrentDevelopment(DevelopmentBase):
                     x_slice[:, col] = xp.nansum(inner_array[:, start_col : col + 1], axis=1)
                 
                 x[i, j] = x_slice
-                link_ratio[i, j, :, :] = y[i, j] / x[i, j]
+                with warnings.catch_warnings():
+                    warnings.simplefilter("ignore", category=RuntimeWarning)
+                    link_ratio[i, j, :, :] = y[i, j] / x[i, j]
 
         exponent = xp.array(
             [{"regression": 0, "volume": 1, "simple": 2}[x] for x in average_[0, 0, 0]]

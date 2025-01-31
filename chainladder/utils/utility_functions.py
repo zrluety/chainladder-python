@@ -69,6 +69,11 @@ def load_sample(key: str, *args, **kwargs):
         origin = "AccidentDate"
         development = "PaymentDate"
         cumulative = False
+    if key.lower() in ["lp_oem_credit_loss"]:
+        columns = "Paid Claims"
+        origin = "Vintage"
+        development = "Reported Date"
+        cumulative = False
     df = pd.read_csv(os.path.join(path, "data", key.lower() + ".csv"))
 
     return Triangle(

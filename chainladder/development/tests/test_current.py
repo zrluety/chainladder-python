@@ -3,7 +3,7 @@ import numpy as np
 import pytest
 
 
-def test_simple_currend_development_pattern():
+def test_simple_current_development_pattern():
     # Create a simple triangle with known incremental pattern
     triangle = cl.load_sample("GenIns")
     
@@ -11,7 +11,7 @@ def test_simple_currend_development_pattern():
     expected_ldf = 2.4906065479322863
     np.testing.assert_almost_equal(dev.ldf_.values[0, 0, 0, 0], expected_ldf)
 
-def test_currend_development_pattern_2_periods():
+def test_current_development_pattern_2_periods():
     # Create a simple triangle with known incremental pattern
     triangle = cl.load_sample("GenIns")
     

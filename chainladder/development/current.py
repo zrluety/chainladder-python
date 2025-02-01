@@ -114,11 +114,11 @@ class CurrentDevelopment(DevelopmentBase):
         for i in range(tri_array.shape[0]):  # First dimension
             for j in range(tri_array.shape[1]):  # Second dimension
                 inner_array = tri_array[i, j, :, :]  # Get the 2D slice
-                y[i, j] = inner_array[..., 1:]
+                y[i, j] = inner_array[..., 1:].copy()
 
                 # create the x array. This is starts as inner_array[..., :-1], but then the divisor for each y
                 # is the sum of the prior n_dev periods.
-                x_slice = inner_array[..., :-1]
+                x_slice = inner_array[..., :-1].copy()
 
                 for col in range(x_slice.shape[1]):
                     n_dev = int(n_developments_[..., col])
